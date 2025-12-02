@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Canvas QTI Quiz Maker - Convert Markdown to Canvas Quizzes | Free Online Tool</title>
+    <meta name="description"
+        content="Free online Canvas QTI Quiz Maker. Easily convert markdown-formatted quiz questions into Canvas-compatible QTI packages. Supports multiple choice, true/false, short answer, essay, and more.">
+    <meta name="keywords"
+        content="Canvas LMS, QTI quiz maker, Canvas quiz generator, markdown to Canvas, QTI converter, education tools, quiz creator, Canvas import, online quiz maker">
+    <meta name="author" content="Canvas QTI Quiz Maker">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pkastner.github.io/CanvasQuizMaker/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pkastner.github.io/CanvasQuizMaker/">
+    <meta property="og:title" content="Canvas QTI Quiz Maker - Convert Markdown to Canvas Quizzes">
+    <meta property="og:description"
+        content="Free online tool to convert markdown quiz questions into Canvas-compatible QTI packages. Fast, easy, and 100% client-side.">
+    <meta property="og:image" content="https://pkastner.github.io/CanvasQuizMaker/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pkastner.github.io/CanvasQuizMaker/">
+    <meta property="twitter:title" content="Canvas QTI Quiz Maker - Convert Markdown to Canvas Quizzes">
+    <meta property="twitter:description"
+        content="Free online tool to convert markdown quiz questions into Canvas-compatible QTI packages. Fast, easy, and 100% client-side.">
+    <meta property="twitter:image" content="https://pkastner.github.io/CanvasQuizMaker/og-image.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="hero">
+            <div class="hero-content">
+                <h1>Canvas QTI Quiz Maker</h1>
+                <p class="subtitle">Transform your markdown quizzes into Canvas-ready QTI packages in seconds</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="editor-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Quiz Input</h2>
+                        <button class="btn btn-secondary" id="clearBtn">Clear</button>
+                    </div>
+                    <textarea id="quizInput" placeholder="Paste your quiz questions here..."
+                        spellcheck="false"></textarea>
+                    <div class="card-footer">
+                        <button class="btn btn-primary" id="generateBtn">
+                            <span class="btn-icon">⬇</span>
+                            Generate QTI Package
+                        </button>
+                        <button class="btn btn-outline" id="previewBtn">
+                            <span class="btn-icon">👁</span>
+                            Preview Questions
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-section" id="previewSection">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Preview</h2>
+                        <button class="btn btn-secondary btn-sm" id="closePreviewBtn">Close</button>
+                    </div>
+                    <div id="previewContent" class="preview-content">
+                        <div class="empty-state">
+                            <p>Click "Preview Questions" to see your parsed quiz</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="instructions-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>How to Use</h2>
+                    </div>
+                    <div class="instructions-content">
+                        <div class="instruction-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Format Your Questions</h3>
+                                <p>Use the following markdown format for your quiz questions:</p>
+                                <pre><code>### **Chapter 1: Topic Name**
+
+1. What is 2+3?  (Multiple Choice)
+   a) 6
+   b) 1
+   *c) 5 (asterisk marks correct)
+   d) 10
+
+2. Which are dinosaurs?  (Multiple Answers)
+   [ ] Woolly mammoth
+   [*] Tyrannosaurus rex
+   [*] Triceratops
+
+3. Who lives at North Pole?  (Short Answer)
+   * Santa
+   * Santa Claus
+   * Father Christmas
+
+4. Water is liquid.  (True/False)
+   *a) True
+   b) False
+
+5. Write an essay.  (Essay)
+####
+
+6. Upload a file.  (File Upload)
+^^^^</code></pre>
+                                <p class="note"><strong>Note:</strong> Mark correct answers with asterisk (*) for MC/TF,
+                                    [*] for multiple answers.</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Generate QTI Package</h3>
+                                <p>Paste your formatted questions into the input area and click "Generate QTI Package"
+                                    to download a ZIP file.</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Import to Canvas</h3>
+                                <p>In Canvas, go to your course → Settings → Import Course Content → Select "QTI .zip
+                                    file" → Upload your generated file.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer">
+                    <p>Built with ❤️ for educators | All processing happens client-side in your browser</p>
+                </footer>
+            </div>
+
+            <div id="loadingOverlay" class="loading-overlay">
+                <div class="loading-spinner"></div>
+                <p>Generating QTI package...</p>
+            </div>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+            <script src="script.js"></script>
+</body>
+
+</html>

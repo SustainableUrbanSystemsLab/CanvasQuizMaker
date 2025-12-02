@@ -1,0 +1,42 @@
+### **Chapter 1: Question Types Demo**
+
+1. What is 2+3?
+   a) 6
+   b) 1
+   *c) 5
+   d) 10
+
+2. Which of the following are dinosaurs?
+   [ ] Woolly mammoth
+   [*] Tyrannosaurus rex
+   [*] Triceratops
+   [ ] Smilodon fatalis
+
+3. Who lives at the North Pole?
+   * Santa
+   * Santa Claus
+   * Father Christmas
+
+4. Water is liquid.
+   *a) True
+   b) False
+
+5. Write an essay about the importance of sustainable design.
+####
+
+6. Upload your project proposal.
+^^^^
+
+### **Chapter 2: Sustainable Design**
+
+1. According to the "four Rs" of sustainable design, which is the best option?
+   a) Recycle
+   b) Reuse
+   *c) Reduce
+   d) Regenerate
+
+2. Which is NOT a renewable energy source?
+   a) Wind
+   b) Biomass
+   *c) Natural Gas
+   d) Geothermal
