@@ -622,6 +622,79 @@ document.addEventListener('DOMContentLoaded', () => {
       previewSection.classList.remove('active');
     }
   });
+
+  // Theme Toggle Logic
+  const themeBtns = document.querySelectorAll('.theme-btn');
+  const html = document.documentElement;
+
+  // Check for saved theme preference or use system preference
+  const savedTheme = localStorage.getItem('theme');
+  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+  // Initial theme setup
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else {
+    // Default to system preference if no saved preference
+    // But since our default CSS is dark, we only need to act if system is light
+    // Actually, let's just set the active button to system
+    updateActiveButton('system');
+    if (systemTheme === 'light') {
+      html.setAttribute('data-theme', 'light');
+    }
+  }
+
+  // Listen for system theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'system') {
+      const newTheme = e.matches ? 'dark' : 'light';
+      if (newTheme === 'light') {
+        html.setAttribute('data-theme', 'light');
+      } else {
+        html.removeAttribute('data-theme');
+      }
+    }
+  });
+
+  themeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.getAttribute('data-theme');
+      applyTheme(theme);
+
+      if (theme === 'system') {
+        localStorage.removeItem('theme');
+      } else {
+        localStorage.setItem('theme', theme);
+      }
+    });
+  });
+
+  function applyTheme(theme) {
+    updateActiveButton(theme);
+
+    if (theme === 'system') {
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      if (systemTheme === 'light') {
+        html.setAttribute('data-theme', 'light');
+      } else {
+        html.removeAttribute('data-theme');
+      }
+    } else if (theme === 'light') {
+      html.setAttribute('data-theme', 'light');
+    } else {
+      html.removeAttribute('data-theme');
+    }
+  }
+
+  function updateActiveButton(theme) {
+    themeBtns.forEach(btn => {
+      if (btn.getAttribute('data-theme') === theme) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
 });
 
 // ===== SAMPLE QUIZ DATA =====

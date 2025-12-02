@@ -3,6 +3,7 @@
     --primary-dark: #5568d3;
     --accent-color: #4facfe;
 
+    /* Default Dark Theme */
     --bg-main: #0a0a0f;
     --bg-card: #1a1a2e;
     --bg-input: #0f0f1e;
@@ -19,6 +20,79 @@
     --radius-md: 10px;
 
     --transition: all 0.2s ease;
+
+    /* Component Colors */
+    --bg-note: #1a2633;
+    --bg-correct: #1a3a2e;
+    --border-correct: #43e97b;
+    --text-correct: #43e97b;
+    --code-color: #a8d5ff;
+}
+
+[data-theme="light"] {
+    --bg-main: #f0f2f5;
+    --bg-card: #ffffff;
+    --bg-input: #f8f9fa;
+    --bg-hover: #e4e6eb;
+
+    --text-primary: #1a1a1a;
+    --text-secondary: #4b5563;
+    --text-muted: #6b7280;
+
+    --border-color: #e5e7eb;
+    --border-hover: #667eea;
+
+    /* Component Colors (Light) */
+    --bg-note: #eef2ff;
+    --bg-correct: #ecfdf5;
+    --border-correct: #34d399;
+    --text-correct: #059669;
+    --code-color: #2563eb;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.theme-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 6px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.theme-btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-hover);
+}
+
+.theme-btn.active {
+    color: white;
+    background: var(--primary-color);
+}
+
+.theme-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
 }
 
 * {
@@ -282,14 +356,14 @@ body {
 }
 
 .preview-question .option.correct {
-    background: #1a3a2e;
-    border: 2px solid #43e97b;
+    background: var(--bg-correct);
+    border: 2px solid var(--border-correct);
     font-weight: 500;
 }
 
 .preview-question .option.correct::before {
     content: '✓ ';
-    color: #43e97b;
+    color: var(--text-correct);
     font-weight: bold;
 }
 
@@ -309,7 +383,7 @@ body {
 .preview-question .essay-note,
 .preview-question .file-note {
     padding: 10px;
-    background: #1a2633;
+    background: var(--bg-note);
     border-left: 3px solid #4facfe;
     border-radius: var(--radius-sm);
     color: var(--text-secondary);
@@ -376,11 +450,11 @@ body {
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 0.9rem;
     line-height: 1.6;
-    color: #a8d5ff;
+    color: var(--code-color);
 }
 
 .note {
-    background: #1a2633;
+    background: var(--bg-note);
     border-left: 3px solid var(--accent-color);
     padding: 12px 16px;
     border-radius: var(--radius-sm);
